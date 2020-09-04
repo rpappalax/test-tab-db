@@ -16,7 +16,8 @@ else
 fi
 
 function generate_sql() {
-    ROW="INSERT INTO tabs (url, title, history, last_used) VALUES (\"https://${SITE}\", \"${SITE}\", \'[\"https:\\\/\\\/${SITE}\\\/\"]\', ${CREATION_DATE});"
+    #ROW="INSERT INTO tabs (url, title, history, last_used) VALUES (\"https://${SITE}\", \"${SITE}\", \'[\"https:\\\/\\\/${SITE}\\\/\"]\', ${CREATION_DATE});"
+    ROW="INSERT INTO tabs (url, title, history, last_used) VALUES (\"https://${SITE}\", \"${SITE}\", '[\"https:\\\/\\\/${SITE}\\\/\"]', ${CREATION_DATE});"
     echo $ROW
 }
 
@@ -42,20 +43,21 @@ done
 
 for counter in "${counters[@]}"
 do  
-    echo
-    echo
-    echo "---------------------------"
-    echo "HYDRATE ${DB_IN_FILE}"
-    echo "---------------------------"
-    echo
     NEW_DB_IN_FILE="${DB_NAME}_${counter}.db"
+    echo
+    echo
+    echo "---------------------------"
+    echo "HYDRATE ${NEW_DB_IN_FILE}"
+    echo "---------------------------"
+    echo
     cp ${DB_IN_FILE} ${NEW_DB_IN_FILE} 
-    for row in ${counter}
+    for row in $(seq 1 $counter)
     do
-        LINE=`sed -n "${row}p" ${IN_FILE}`
+        echo "counter: ${counter}"
+        echo "row: ${row}"
+        LINE=`sed -n "${row}p" ${OUT_FILE}`
         echo "LINE: ${LINE}"
         sqlite3 ${NEW_DB_IN_FILE} "${LINE}"
     done
 done
-#while read ROW; do sqlite3 ${NEW_DB_IN_FILE} "${ROW}"; done < ./${OUT_FILE}
 
