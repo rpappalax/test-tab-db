@@ -53,10 +53,8 @@ do
     cp ${DB_IN_FILE} ${NEW_DB_IN_FILE} 
     for row in $(seq 1 $counter)
     do
-        echo "counter: ${counter}"
-        echo "row: ${row}"
         LINE=`sed -n "${row}p" ${OUT_FILE}`
-        echo "LINE: ${LINE}"
+        echo "ROW #${row}: ${LINE}"
         sqlite3 ${NEW_DB_IN_FILE} "${LINE}"
     done
 done
