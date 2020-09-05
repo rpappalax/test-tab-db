@@ -31,19 +31,6 @@ PATH_TEST_PROFILE_DB=$(find ${DEVICE_PATH} . -type d -name "profile.testProfile"
 PATH_TEST_FIXTURES_DB=$(find ${DEVICE_PATH} . -type d -name "test-fixtures")
 
 
-echo "-------------------------------"
-echo "DEVICE ID"
-echo "-------------------------------"
-
-echo $DEVICE_ID
-
-echo
-echo "-------------------------------"
-echo "DEVICE PATH"
-echo "-------------------------------"
-
-echo $DEVICE_PATH
-
 echo
 echo "-------------------------------"
 echo "PATH_PROFILE_DB"
@@ -67,6 +54,7 @@ echo "-------------------------------"
 
 echo $PATH_TEST_FIXTURES_DB
 open $PATH_TEST_FIXTURES_DB
+open .
 
 echo
 echo "-------------------------------"

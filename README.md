@@ -2,10 +2,8 @@
 
 Scripts to generate oodles of test data for Firefox iOS
 
-## Getting Started
 
-
-### Prerequisites
+## Prerequisites
 
 1. sqlite3 (already installed on OSX)
 
@@ -17,7 +15,7 @@ cd firefox-ios
 git clone https://github.com/rpappalax/test-tab-db
 ```
 
-## Generate data! 
+## Generate data 
 
 ```
 cd test-tab-db
@@ -31,4 +29,31 @@ Copy new test databases to firefox-ios/test-fixtures
 cp *.sh ../test-fixtures
 ```
 
+
+## View data 
+
+open database
+
+```
+sqlite3 <database_name>.db
+```
+
+show tables
+
+```
+.tables
+```
+
+show record count / records for tabs table
+
+``` 
+select count(*) from tabs;
+select * from tabs;
+```
+
+exit
+
+```
+.exit
+```
 
