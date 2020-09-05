@@ -10,16 +10,17 @@ rm -f ${OUT_FILE}
 
 # set row numbers for each test DB desired
 if [ "$#" -eq 0 ]; then
-    counters=( 10 20 40 )
+    counters=( 10 20 40 80 160 320 960 )
 else
     counters=( "$@" )
 fi
 
 function generate_sql() {
-    #ROW="INSERT INTO tabs (url, title, history, last_used) VALUES (\"https://${SITE}\", \"${SITE}\", \'[\"https:\\\/\\\/${SITE}\\\/\"]\', ${CREATION_DATE});"
     ROW="INSERT INTO tabs (url, title, history, last_used) VALUES (\"https://${SITE}\", \"${SITE}\", '[\"https:\\\/\\\/${SITE}\\\/\"]', ${CREATION_DATE});"
     echo $ROW
 }
+
+source ./devices.sh
 
 echo
 echo
@@ -59,3 +60,12 @@ do
     done
 done
 
+echo
+echo "-------------------------------"
+echo "CLEANUP"
+echo "-------------------------------"
+
+*.db-* *.sql
+ls -la
+echo
+echo

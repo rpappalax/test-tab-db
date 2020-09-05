@@ -67,5 +67,13 @@ echo "-------------------------------"
 
 echo $PATH_TEST_FIXTURES_DB
 open $PATH_TEST_FIXTURES_DB
+
+echo
+echo "-------------------------------"
+echo "COPY profile.profile/browser.db"
+echo "-------------------------------"
+
+cp ${PATH_PROFILE_DB}/browser.db .
+ls -la browser.db
 echo
 echo
